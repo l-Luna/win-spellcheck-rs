@@ -1,6 +1,6 @@
 [package]
 name = "win-spellcheck-rs"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2024"
 license = "MIT"
 description = "a simple wrapper around the Windows Spellchecking API"

@@ -1,3 +1,5 @@
+#![cfg(windows)]
+
 use std::sync::Mutex;
 use windows::{Win32::Foundation::*, Win32::Globalization::*, Win32::System::Com::*, core::*};
 
@@ -16,9 +18,8 @@ fn try_init_com() {
         *com_init = true;
         drop(com_init);
         unsafe {
-            CoInitializeEx(None, COINIT_MULTITHREADED)
-                .ok()
-                .expect("Failed to initialize COM!");
+            // don't check, if it fails then another library has already initialized it
+            CoInitializeEx(None, COINIT_MULTITHREADED);
         }
     }
 }
