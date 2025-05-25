@@ -11,8 +11,9 @@ use windows::{Win32::Foundation::*, Win32::Globalization::*, Win32::System::Com:
 static COM_INIT: Mutex<bool> = Mutex::new(false);
 
 fn try_init_com() {
-    let com_init = COM_INIT.lock().unwrap();
+    let mut com_init = COM_INIT.lock().unwrap();
     if !*com_init {
+        *com_init = true;
         drop(com_init);
         unsafe {
             CoInitializeEx(None, COINIT_MULTITHREADED)
