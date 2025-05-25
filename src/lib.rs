@@ -1,6 +1,11 @@
 use std::sync::Mutex;
 use windows::{Win32::Foundation::*, Win32::Globalization::*, Win32::System::Com::*, core::*};
 
+/// A simple wrapper around the Windows Spellchecking API.
+///
+/// Create a [Spellchecker] of the desired locale, then call [Spellchecker::check] to check a string.
+/// The returned [SpellingError]s contain replacement suggestions.
+
 // try to only initialize COM once
 // (though it's OK if this happens multiple times or other libraries do so too)
 static COM_INIT: Mutex<bool> = Mutex::new(false);
